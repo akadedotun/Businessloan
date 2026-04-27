@@ -124,7 +124,7 @@ struct Step7ReviewView: View {
             VStack(spacing: 0) {
                 Divider()
                 PrimaryButton(title: "Submit Application") {
-                    router.push(vm.isApproved ? .loanApproved : .loanRejected)
+                    router.push(.loanApproved)
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 12)

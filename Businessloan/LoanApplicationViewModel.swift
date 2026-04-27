@@ -45,8 +45,6 @@ final class LoanApplicationViewModel: ObservableObject {
     @Published var utilityBillUploaded   = false
 
     // MARK: Derived
-    var isApproved: Bool { monthlyRevenue >= 200_000 }
-
     var monthlyRepayment: Double {
         let r = 0.015          // 1.5 % / month  ≈ 18 % p.a.
         let n = Double(loanTerm)

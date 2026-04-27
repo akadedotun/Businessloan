@@ -4,7 +4,7 @@ struct Step4IncomeView: View {
     @EnvironmentObject var router: Router
     @EnvironmentObject var vm: LoanApplicationViewModel
 
-    private var isValid: Bool { vm.monthlyRevenue > 0 }
+    private var isValid: Bool { vm.monthlyRevenue > 0 && vm.netMonthlyIncome > 0 }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -71,7 +71,11 @@ struct Step4IncomeView: View {
             VStack(spacing: 0) {
                 Divider()
                 PrimaryButton(title: "Continue", enabled: isValid) {
-                    router.push(.step5Bank)
+                    if vm.netMonthlyIncome > 200_000 {
+                        router.push(.step5Bank)
+                    } else {
+                        router.push(.loanRejected)
+                    }
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 12)
