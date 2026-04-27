@@ -2,10 +2,7 @@ import SwiftUI
 
 struct LoanSuccessView: View {
     @EnvironmentObject var router: Router
-
-    let amount: String
-    let monthly: String
-    let duration: Int
+    @EnvironmentObject var vm: LoanApplicationViewModel
 
     @State private var animate = false
 
@@ -15,21 +12,15 @@ struct LoanSuccessView: View {
 
             // ── Success icon ──────────────────────────────────────
             ZStack {
-                Circle()
-                    .fill(Color.byteGreen.opacity(0.10))
-                    .frame(width: 148, height: 148)
-                Circle()
-                    .fill(Color.byteGreen.opacity(0.18))
-                    .frame(width: 112, height: 112)
+                Circle().fill(Color.byteGreen.opacity(0.10)).frame(width: 150, height: 150)
+                Circle().fill(Color.byteGreen.opacity(0.18)).frame(width: 112, height: 112)
                 Image(systemName: "checkmark.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 70)
+                    .resizable().scaledToFit().frame(width: 72)
                     .foregroundColor(.byteGreen)
                     .scaleEffect(animate ? 1 : 0.4)
                     .opacity(animate ? 1 : 0)
             }
-            .padding(.bottom, 32)
+            .padding(.bottom, 28)
             .onAppear {
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.6).delay(0.15)) {
                     animate = true
@@ -40,19 +31,21 @@ struct LoanSuccessView: View {
                 .font(.system(size: 28, weight: .bold))
                 .padding(.bottom, 10)
 
-            Text("Your loan has been approved and\nwill be disbursed shortly.")
+            Text("Your application is approved.\nDisbursement will be made within 24 hours.")
                 .font(.system(size: 16))
                 .foregroundColor(.byteGray)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, 40)
+                .padding(.bottom, 36)
 
             // ── Summary card ──────────────────────────────────────
             VStack(spacing: 0) {
-                SuccessLine(label: "Loan Amount",   value: amount)
+                SLine(label: "Loan Amount",     value: vm.fmt(vm.loanAmount))
                 Divider()
-                SuccessLine(label: "Monthly Payment", value: monthly)
+                SLine(label: "Monthly Payment", value: vm.fmt(vm.monthlyRepayment))
                 Divider()
-                SuccessLine(label: "Duration",      value: "\(duration) Months")
+                SLine(label: "Repayment Term",  value: "\(vm.loanTerm) Months")
+                Divider()
+                SLine(label: "Disbursement to", value: vm.bankName)
             }
             .background(Color.byteCardBg)
             .cornerRadius(16)
@@ -60,7 +53,6 @@ struct LoanSuccessView: View {
 
             Spacer()
 
-            // ── Done ──────────────────────────────────────────────
             Button { router.goToDashboard() } label: {
                 Text("Done")
                     .font(.system(size: 17, weight: .semibold))
@@ -78,27 +70,22 @@ struct LoanSuccessView: View {
     }
 }
 
-private struct SuccessLine: View {
-    let label: String
-    let value: String
-
+private struct SLine: View {
+    let label: String; let value: String
     var body: some View {
         HStack {
-            Text(label)
-                .font(.system(size: 15))
-                .foregroundColor(.byteGray)
+            Text(label).font(.system(size: 15)).foregroundColor(.byteGray)
             Spacer()
-            Text(value)
-                .font(.system(size: 15, weight: .semibold))
+            Text(value).font(.system(size: 15, weight: .semibold))
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 15)
+        .padding(.horizontal, 16).padding(.vertical, 14)
     }
 }
 
 #Preview {
     NavigationStack {
-        LoanSuccessView(amount: "₦150,000", monthly: "₦13,750", duration: 12)
+        LoanSuccessView()
             .environmentObject(Router())
+            .environmentObject(LoanApplicationViewModel())
     }
 }

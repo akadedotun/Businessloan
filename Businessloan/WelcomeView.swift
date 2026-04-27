@@ -46,7 +46,7 @@ struct WelcomeView: View {
 
                     VStack(spacing: 14) {
                         Button {
-                            router.push(.loanType)
+                            router.push(.step1Personal)
                         } label: {
                             Text("Get Started")
                                 .font(.system(size: 17, weight: .semibold))

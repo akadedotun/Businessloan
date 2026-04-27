@@ -2,11 +2,16 @@ import SwiftUI
 import Combine
 
 enum Route: Hashable {
-    case loanType
     case dashboard
-    case apply
-    case summary(amount: Int, purpose: String, duration: Int)
-    case success(amount: String, monthly: String, duration: Int)
+    case step1Personal
+    case step2Loan
+    case step3Business
+    case step4Income
+    case step5Bank
+    case step6Documents
+    case step7Review
+    case loanApproved
+    case loanRejected
 }
 
 final class Router: ObservableObject {
@@ -18,5 +23,9 @@ final class Router: ObservableObject {
 
     func goToDashboard() {
         path = NavigationPath([Route.dashboard])
+    }
+
+    func startApplication() {
+        path.append(Route.step1Personal)
     }
 }

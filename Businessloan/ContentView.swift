@@ -2,30 +2,28 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var router = Router()
+    @StateObject private var loanVM = LoanApplicationViewModel()
 
     var body: some View {
         NavigationStack(path: $router.path) {
             WelcomeView()
                 .navigationDestination(for: Route.self) { route in
                     switch route {
-                    case .loanType:
-                        LoanTypeView()
-
-                    case .dashboard:
-                        LoanDashboardView()
-
-                    case .apply:
-                        LoanApplyView()
-
-                    case let .summary(amount, purpose, duration):
-                        LoanSummaryView(amount: amount, purpose: purpose, duration: duration)
-
-                    case let .success(amount, monthly, duration):
-                        LoanSuccessView(amount: amount, monthly: monthly, duration: duration)
+                    case .dashboard:        LoanDashboardView()
+                    case .step1Personal:    Step1PersonalView()
+                    case .step2Loan:        Step2LoanView()
+                    case .step3Business:    Step3BusinessView()
+                    case .step4Income:      Step4IncomeView()
+                    case .step5Bank:        Step5BankView()
+                    case .step6Documents:   Step6DocumentsView()
+                    case .step7Review:      Step7ReviewView()
+                    case .loanApproved:     LoanSuccessView()
+                    case .loanRejected:     LoanRejectedView()
                     }
                 }
         }
         .environmentObject(router)
+        .environmentObject(loanVM)
     }
 }
 

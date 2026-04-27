@@ -35,7 +35,7 @@ struct LoanDashboardView: View {
 
                 // ── Quick actions ─────────────────────────────────
                 HStack(spacing: 14) {
-                    Button { router.push(.apply) } label: {
+                    Button { router.push(.step1Personal) } label: {
                         QuickActionButton(icon: "arrow.forward.to.line.circle", title: "Apply")
                     }
                     QuickActionButton(icon: "arrow.down.to.line.circle", title: "Repay")
