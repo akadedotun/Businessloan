@@ -7,78 +7,76 @@ struct WelcomeView: View {
         ZStack(alignment: .bottom) {
             Color.bytePurple.ignoresSafeArea()
 
+            // Logo + illustration anchored in the purple area
             VStack(spacing: 0) {
-                // ── Hero ──────────────────────────────────────────
-                ZStack {
-                    // Logo
-                    VStack {
-                        HStack(spacing: 6) {
-                            Text("byte")
-                                .font(.system(size: 30, weight: .bold))
-                                .foregroundColor(.white)
-                            Image(systemName: "b.square.fill")
-                                .font(.system(size: 24))
-                                .foregroundColor(.white.opacity(0.9))
-                        }
-                        .padding(.top, 16)
-                        Spacer()
-                    }
-
-                    // Illustration
-                    HeroIllustration()
-                        .offset(y: 24)
+                HStack(spacing: 6) {
+                    Text("byte")
+                        .font(.system(size: 30, weight: .bold))
+                        .foregroundColor(.white)
+                    Image(systemName: "b.square.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(.white.opacity(0.9))
                 }
-                .frame(maxWidth: .infinity)
-                .frame(height: UIScreen.main.bounds.height * 0.56)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, 64)
 
-                // ── White card ────────────────────────────────────
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Welcome to Byte")
-                        .font(.system(size: 28, weight: .bold))
-                        .foregroundColor(.primary)
-                        .padding(.bottom, 8)
+                Spacer()
 
-                    Text("Use Byte as a person or business")
-                        .font(.system(size: 16))
-                        .foregroundColor(.byteGray)
+                HeroIllustration()
 
-                    Spacer()
+                Spacer()
 
-                    VStack(spacing: 14) {
-                        Button {
-                            router.push(.step1Personal)
-                        } label: {
-                            Text("Get Started")
-                                .font(.system(size: 17, weight: .semibold))
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 56)
-                                .background(Color.bytePurple)
-                                .cornerRadius(14)
-                        }
-
-                        Button {} label: {
-                            Text("Login")
-                                .font(.system(size: 17, weight: .semibold))
-                                .foregroundColor(.bytePurple)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 56)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 14)
-                                        .stroke(Color.bytePurple, lineWidth: 1.5)
-                                )
-                        }
-                    }
-                }
-                .padding(.horizontal, 24)
-                .padding(.top, 32)
-                .padding(.bottom, 48)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color.white)
-                .clipShape(RoundedCorner(radius: 28, corners: [.topLeft, .topRight]))
-                .offset(y: -20)
+                // invisible spacer that matches white card height
+                Color.clear.frame(height: 290)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            // ── White card pinned to bottom ───────────────────────
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Welcome to Byte")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(.primary)
+                    .padding(.bottom, 8)
+
+                Text("Use Byte as a person or business")
+                    .font(.system(size: 16))
+                    .foregroundColor(.byteGray)
+                    .padding(.bottom, 28)
+
+                VStack(spacing: 14) {
+                    Button {
+                        router.push(.step1Personal)
+                    } label: {
+                        Text("Get Started")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 56)
+                            .background(Color.bytePurple)
+                            .cornerRadius(14)
+                    }
+
+                    Button {} label: {
+                        Text("Login")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundColor(.bytePurple)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 56)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 14)
+                                    .stroke(Color.bytePurple, lineWidth: 1.5)
+                            )
+                    }
+                }
+            }
+            .padding(.horizontal, 24)
+            .padding(.top, 32)
+            .padding(.bottom, 52)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.white)
+            .clipShape(RoundedCorner(radius: 28, corners: [.topLeft, .topRight]))
         }
+        .ignoresSafeArea()
         .navigationBarHidden(true)
     }
 }
@@ -93,7 +91,6 @@ private struct HeroIllustration: View {
                 .fill(.white.opacity(0.10))
                 .frame(width: 190, height: 190)
 
-            // Person body
             VStack(spacing: 0) {
                 ZStack {
                     Circle()
@@ -111,13 +108,11 @@ private struct HeroIllustration: View {
             }
             .offset(y: 12)
 
-            // Backpack
             Image(systemName: "bag.fill")
                 .font(.system(size: 46))
                 .foregroundColor(.orange.opacity(0.88))
                 .offset(x: 52, y: 22)
 
-            // Phone
             RoundedRectangle(cornerRadius: 8)
                 .fill(.white.opacity(0.85))
                 .frame(width: 32, height: 52)
@@ -129,7 +124,6 @@ private struct HeroIllustration: View {
                 .offset(x: -50, y: 28)
                 .rotationEffect(.degrees(-12))
 
-            // Chat bubble
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.white)

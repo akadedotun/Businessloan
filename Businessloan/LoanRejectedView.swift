@@ -41,28 +41,14 @@ struct LoanRejectedView: View {
 
             Spacer()
 
-            VStack(spacing: 12) {
-                Button { router.goToDashboard() } label: {
-                    Text("Return to Home")
-                        .font(.system(size: 17, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 56)
-                        .background(Color.bytePurple)
-                        .cornerRadius(14)
-                }
-
-                Button { router.startApplication() } label: {
-                    Text("Try Again")
-                        .font(.system(size: 17, weight: .semibold))
-                        .foregroundColor(.bytePurple)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 56)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 14)
-                                .stroke(Color.bytePurple, lineWidth: 1.5)
-                        )
-                }
+            Button { router.goToDashboard() } label: {
+                Text("Complete Signup")
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 56)
+                    .background(Color.bytePurple)
+                    .cornerRadius(14)
             }
             .padding(.horizontal, 24)
             .padding(.bottom, 48)

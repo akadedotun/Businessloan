@@ -20,10 +20,8 @@ struct Step1PersonalView: View {
                 StepHeader(title: "Personal Details",
                            subtitle: "Tell us a bit about yourself")
 
-                HStack(spacing: 12) {
-                    ByteTextField(label: "First Name", placeholder: "John", text: $vm.firstName)
-                    ByteTextField(label: "Last Name",  placeholder: "Doe",  text: $vm.lastName)
-                }
+                ByteTextField(label: "First Name", placeholder: "John", text: $vm.firstName)
+                ByteTextField(label: "Last Name",  placeholder: "Doe",  text: $vm.lastName)
 
                 ByteTextField(label: "Phone Number", placeholder: "08012345678",
                               text: $vm.phone, keyboard: .phonePad)
@@ -35,16 +33,19 @@ struct Step1PersonalView: View {
                     Text("Date of Birth")
                         .font(.system(size: 13, weight: .medium))
                         .foregroundColor(.byteGray)
-                    DatePicker("", selection: $vm.dob,
-                               in: ...Calendar.current.date(byAdding: .year, value: -18, to: Date())!,
-                               displayedComponents: .date)
-                        .datePickerStyle(.compact)
-                        .labelsHidden()
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 10)
-                        .background(Color.byteCardBg)
-                        .cornerRadius(10)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    HStack {
+                        DatePicker("", selection: $vm.dob,
+                                   in: ...Calendar.current.date(byAdding: .year, value: -18, to: Date())!,
+                                   displayedComponents: .date)
+                            .datePickerStyle(.compact)
+                            .labelsHidden()
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 14)
+                    .background(Color.byteCardBg)
+                    .cornerRadius(10)
                 }
 
                 ByteTextField(label: "Home Address", placeholder: "123 Lagos Street, Ikeja",

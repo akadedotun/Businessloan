@@ -85,6 +85,7 @@ struct Step2LoanView: View {
                 .padding(12)
                 .background(Color.bytePurple.opacity(0.07))
                 .cornerRadius(10)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
                 // ── Loan purpose ──────────────────────────────────
                 VStack(alignment: .leading, spacing: 10) {
