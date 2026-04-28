@@ -58,11 +58,11 @@ struct Step5BankView: View {
                     Text("Loan disbursement will be made directly to this account after approval.")
                         .font(.system(size: 13))
                         .foregroundColor(.byteGray)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(12)
                 .background(Color.bytePurple.opacity(0.07))
                 .cornerRadius(10)
-                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.horizontal, 24)
             .padding(.top, 24)

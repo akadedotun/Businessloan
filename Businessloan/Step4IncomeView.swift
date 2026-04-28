@@ -58,11 +58,11 @@ struct Step4IncomeView: View {
                     Text("Your financial information is encrypted and only used for loan assessment.")
                         .font(.system(size: 13))
                         .foregroundColor(.byteGray)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(12)
                 .background(Color.bytePurple.opacity(0.07))
                 .cornerRadius(10)
-                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.horizontal, 24)
             .padding(.top, 24)

@@ -49,6 +49,7 @@ struct Step6DocumentsView: View {
                     Text("All documents are securely stored and used solely for verification purposes.")
                         .font(.system(size: 13))
                         .foregroundColor(.byteGray)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(12)
                 .background(Color.bytePurple.opacity(0.07))

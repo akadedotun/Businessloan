@@ -74,18 +74,18 @@ struct Step2LoanView: View {
                 }
 
                 // ── Estimated monthly payment ─────────────────────
-                HStack {
+                HStack(alignment: .top, spacing: 10) {
                     Image(systemName: "info.circle")
                         .foregroundColor(.bytePurple)
                         .font(.system(size: 14))
                     Text("Est. monthly repayment: \(vm.fmt(vm.monthlyRepayment)) at 1.5% / month")
                         .font(.system(size: 13))
                         .foregroundColor(.byteGray)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(12)
                 .background(Color.bytePurple.opacity(0.07))
                 .cornerRadius(10)
-                .frame(maxWidth: .infinity, alignment: .leading)
 
                 // ── Loan purpose ──────────────────────────────────
                 VStack(alignment: .leading, spacing: 10) {
